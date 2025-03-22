@@ -13,6 +13,7 @@ void staffLogin() {
 	cin >> staffPassword;
 
 	if (staffUsername == "staff" && staffPassword == "staff") {
+		cout << endl << "Logged In Successfully!" << endl;
 		cout << endl << "Please select one of the following options:\n 1) Experiences Menu\n 2) Employer Menu" << endl << endl;
 		int option;
 		cin >> option;
@@ -25,8 +26,5 @@ void staffLogin() {
 			employerMenu();
 			break;
 		}
-	}
-	else {
-		cout << endl << "Incorrect password! Please try again.";
 	}
 };

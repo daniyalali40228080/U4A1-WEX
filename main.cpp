@@ -11,23 +11,22 @@ void welcome() {
 	// Print welcome message
 	cout << endl << "--------------- " << "Welcome to HRUC Work Experience Management System." << " ---------------" << endl;
 
-	// Prompt to select option
-	cout << endl << "Please select one of the following options:\n 1) Student Login\n 2) Staff Login\n 3) Employer Menu" << endl << endl;
+	cout << endl << "Please select one of the following options:\n\n 1) Student Login\n 2) Staff Login\n 3) Employer Menu" << endl << endl << "Option: ";
 	int option;
 	cin >> option;
 
 	// Switch to redirect to selected option
 	switch (option) {
 	case 1:
-		cout << endl << "Selected 1" << endl;
+		cout << endl << "--- Student Login | HRUC WEX System ---" << endl;
 		studentLogin();
 		break;
 	case 2:
-		cout << endl << "Selected 2" << endl;
+		cout << endl << "--- Staff Login | HRUC WEX System ---" << endl;
 		staffLogin();
 		break;
 	case 3:
-		cout << endl << "Selected 3" << endl;
+		cout << endl << "--- Employer Menu | HRUC WEX System ---" << endl;
 		employerMenu();
 		break;
 	default:

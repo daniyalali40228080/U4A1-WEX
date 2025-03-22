@@ -12,6 +12,7 @@ void studentLogin() {
 	cin >> studentPassword;
 
 	if (studentUsername == "student" && studentPassword == "student") {
+		cout << "Logged In Successfully!" << endl;
 		experiencesMenu();
 	}
 };
