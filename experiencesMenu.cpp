@@ -37,7 +37,7 @@ void addOpportunity() {
 	cout << "Enter the number of positions available: " << endl;
 	cin >> x.positionsAvailable;
 	opportunitiesList.push_back(x);
-	experiencesMenu();
+	welcome(); // Return to main menu
 }
 
 void displayOpportunities() {
@@ -52,14 +52,16 @@ void displayOpportunities() {
 		cout << "Number of Hours: " << opportunitiesList[i].hours << endl;
 		cout << "Number of Positions Available: " << opportunitiesList[i].positionsAvailable << endl;
 	}
-	experiencesMenu();
+	welcome(); // Return to main menu
 }
 
 void searchOpportunity() {
 	string searchCriteria;
 	cout << "Enter the name of the opportunity you want to search for: " << endl << "Option: ";
 	cin >> searchCriteria;
+	// Enter name of opportunity
 	cout << endl;
+	// Search through all names until search name matches and return details
 	for (int i = 0; i < opportunitiesList.size(); i++) {
 		if (searchCriteria == opportunitiesList[i].name) {
 			cout << "Name: " << opportunitiesList[i].name << endl;
@@ -72,14 +74,15 @@ void searchOpportunity() {
 			cout << "Number of Positions Available: " << opportunitiesList[i].positionsAvailable << endl;
 		}
 	}
-	experiencesMenu();
+	welcome(); // Return to main menu
 }
 
 void experiencesMenu() {
+	// Display welcome message
 	cout << endl << "--------------- Experiences Menu | HRUC WEX System ---------------" << endl;
 	cout << endl << "Select one of the following options to be redirected to the correct page:\n\n 1) Add Opportunity\n 2) Display All Opportunities\n 3) Search for an Opportunity\n 4) Return to Main Menu" << endl << "Option: ";
 	int option;
-	cin >> option;
+	cin >> option; // Wait for input
 
 	switch (option) {
 	case 1:
@@ -96,5 +99,6 @@ void experiencesMenu() {
 		break;
 	default:
 		cout << "Invalid Option!";
+		welcome(); // Return to main menu
 	}
 }
