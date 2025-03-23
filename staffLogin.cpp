@@ -26,9 +26,12 @@ void staffLogin() {
 		case 2:
 			employerMenu();
 			break;
-		}
 		default:
 			staffLogin();
 			break;
+		}
+	} else {
+		cout << "Credentials are incorrect! Try again." << endl;
+		staffLogin();
 	}
 };
