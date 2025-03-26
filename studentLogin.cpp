@@ -5,16 +5,14 @@ using namespace std;
 void displayOpportunities();
 void searchOpportunity();
 
-int loginAttempts = 2;
-
 void studentLogin() {
+	int loginAttempts = 2;
+	string studentUsername, studentPassword; // Initalise Variables
+	cout << endl << "Enter student username: ";
+	cin >> studentUsername;
+	cout << "Enter student password: ";
+	cin >> studentPassword;
 	if (!loginAttempts == 0) {
-		string studentUsername, studentPassword; // Initalise Variables
-		cout << endl << "Enter student username: ";
-		cin >> studentUsername;
-		cout << "Enter student password: ";
-		cin >> studentPassword;
-
 		// Check if credentials are correct
 		if (studentUsername == "student" && studentPassword == "student") {
 			cout << "Logged In Successfully!" << endl;
