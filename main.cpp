@@ -2,7 +2,6 @@
 using namespace std;
 
 // Initalise Functions
-void experiencesMenu();
 void staffLogin();
 void employerMenu();
 void studentLogin();
@@ -33,7 +32,7 @@ void welcome() {
 		cout << endl << "Invalid option! Try again.";
 		welcome();
 		break;
-	} 
+	}
 }
 
 int main() {
