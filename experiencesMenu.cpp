@@ -14,7 +14,6 @@ struct Opportunity {
 };
 
 vector<Opportunity> opportunitiesList;
-void experiencesMenu();
 void welcome();
 
 void addOpportunity() {
