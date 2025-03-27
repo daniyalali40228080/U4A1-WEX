@@ -1,6 +1,11 @@
 #include <iostream>
+#include <iterator>
+#include <string>
 #include <vector>
+#include <fstream> // For file handling
 using namespace std;
+
+const string opportunitiesFile = "opportunities.txt";
 
 struct Opportunity {
 	string name;
@@ -11,10 +16,26 @@ struct Opportunity {
 	string location;
 	int hours;
 	int positionsAvailable;
+	bool applied = false;
 };
 
 vector<Opportunity> opportunitiesList;
 void welcome();
+
+void saveVector() {
+	ofstream output_file(opportunitiesFile, ios::app); // Append mode
+	if (output_file.is_open()) {
+		for (const auto& opp : opportunitiesList) {
+			output_file << opp.name << '\n' << opp.company << '\n' << opp.description << '\n'
+				<< opp.date << '\n' << opp.qualifications << '\n' << opp.location << '\n'
+				<< opp.hours << '\n' << opp.positionsAvailable << '\n' << opp.applied << '\n';
+		}
+	}
+	else {
+		cerr << "Error opening file for writing.\n";
+	}
+	output_file.close();
+}
 
 void addOpportunity() {
 	Opportunity x;
@@ -36,10 +57,25 @@ void addOpportunity() {
 	cout << "Enter the number of positions available: " << endl;
 	cin >> x.positionsAvailable;
 	opportunitiesList.push_back(x);
+
+	saveVector();
 	welcome(); // Return to main menu
 }
+
+void loadOpportunities() {
+	ifstream input_file(opportunitiesFile);
+	Opportunity opp;
+	while (input_file >> opp.name >> opp.company >> opp.description >> opp.date
+		>> opp.qualifications >> opp.location >> opp.hours >> opp.positionsAvailable >> opp.applied) {
+		opportunitiesList.push_back(opp);
+	}
+	input_file.close();
+}
+
+
 void displayOpportunities() {
 	cout << endl << endl;
+	loadOpportunities();
 	for (int i = 0; i < opportunitiesList.size(); i++) {
 		cout << "Name: " << opportunitiesList[i].name << endl;
 		cout << "Company: " << opportunitiesList[i].company << endl;
@@ -49,18 +85,18 @@ void displayOpportunities() {
 		cout << "Location: " << opportunitiesList[i].location << endl;
 		cout << "Number of Hours: " << opportunitiesList[i].hours << endl;
 		cout << "Number of Positions Available: " << opportunitiesList[i].positionsAvailable << endl;
+		cout << "Applied: " << endl;
 	}
 	welcome(); // Return to main menu
 }
 void searchOpportunity() {
 	string searchCriteria;
-	cout << "Enter the name of the opportunity you want to search for: " << endl << "Option: ";
-	cin >> searchCriteria;
-	// Enter name of opportunity
+	cout << "This feature searches through all the opportunities you have applied to, to continue enter the name of the opportunity.";
 	cout << endl;
-	// Search through all names until search name matches and return details
+	cin >> searchCriteria;
+	// Search through for all applied opportunities
 	for (int i = 0; i < opportunitiesList.size(); i++) {
-		if (searchCriteria == opportunitiesList[i].name) {
+		if (opportunitiesList[i].applied && searchCriteria == opportunitiesList[i].name) {
 			cout << "Name: " << opportunitiesList[i].name << endl;
 			cout << "Company: " << opportunitiesList[i].company << endl;
 			cout << "Description: " << opportunitiesList[i].description << endl;
@@ -69,7 +105,35 @@ void searchOpportunity() {
 			cout << "Location: " << opportunitiesList[i].location << endl;
 			cout << "Number of Hours: " << opportunitiesList[i].hours << endl;
 			cout << "Number of Positions Available: " << opportunitiesList[i].positionsAvailable << endl;
+			cout << "Applied: " << opportunitiesList[i].applied << endl;
 		}
 	}
 	welcome(); // Return to main menu
+}
+
+void applyOpportunity() {
+	cout << endl << "Listing all opportunities you have not applied to..." << endl;
+	for (int i = 0; i < opportunitiesList.size(); i++) {
+		if (not opportunitiesList[i].applied) {
+			cout << "Name: " << opportunitiesList[i].name << endl;
+			cout << "Company: " << opportunitiesList[i].company << endl;
+			cout << "Description: " << opportunitiesList[i].description << endl;
+
+			if (not opportunitiesList[i].applied) {
+				char applyOption;
+				cout << endl << "Would you like to apply to this experience? (Y/N) Option: ";
+				cin >> applyOption;
+				if (applyOption == 'Y') {
+					opportunitiesList[i].applied = true;
+					cout << endl << "Applied to opportunitity successfully!" << endl;
+					saveVector();
+					welcome();
+				}
+				else {
+					cout << "You have not applied to this experience." << endl;
+					welcome();
+				}
+			}
+		}
+	}
 }
