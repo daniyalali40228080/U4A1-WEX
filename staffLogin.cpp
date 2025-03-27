@@ -8,10 +8,10 @@ void displayOpportunities();
 void searchOpportunity();
 void welcome();
 
-int loginAttempts = 3; // Number of password attempts allowed
-
 void staffLogin() {
     string staffUsername, staffPassword; // Initialise Variables
+
+    int loginAttempts = 2; // Number of password attempts allowed
 
     while (loginAttempts > 0) {
         cout << endl << "Enter staff username: ";
@@ -19,7 +19,21 @@ void staffLogin() {
         cout << "Enter staff password: ";
         cin >> staffPassword;
 
-        if (staffUsername == "employer" && staffPassword == "employer") {
+        char key;
+		while ((key = _getch()) != '\r') {  // Enter key ('\r') to submit
+			if (key == '\b') {  // Handle backspace
+				if (!studentPassword.empty()) {
+					studentPassword.pop_back();
+					cout << "\b \b";  // Remove '*' from screen
+				}
+			}
+			else {
+				studentPassword += key;
+				cout << '*';  // Show '*' instead of actual character
+			}
+		}
+
+        if (staffUsername == "staff" && staffPassword == "staff") {
             // Ask to select an option
             cout << "Select one of the following options:\n"
                  << " 1) Add an Opportunity\n"
@@ -45,16 +59,17 @@ void staffLogin() {
                     welcome();
                     break;
             }
-            return; // Exit after successful login and option handling
-        } else {
+        } 
+        else {
             loginAttempts--;
 
-                cout << "Incorrect username or password! Try again.\n";
-                cout << "You have " << loginAttempts << " login attempts remaining.\n";
+            cout << "Incorrect username or password! Try again.\n";
+            cout << "You have " << loginAttempts << " login attempts remaining.\n";
+            staffLogin();
         }
-        if (loginAttempts =< 0) {
-            cout << endl << endl << "Exceeded maximum amount of login attempts, terminating program...";
-            exit(0);
-        }
+    }
+    if (loginAttempts =< 0) {
+        cout << endl << endl << "Exceeded maximum amount of login attempts, terminating program...";
+        exit(0);
     }
 }
