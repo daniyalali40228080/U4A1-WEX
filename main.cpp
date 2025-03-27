@@ -2,14 +2,16 @@
 using namespace std;
 
 // Initalise Functions
+void experiencesMenu();
 void staffLogin();
+void employerMenu();
 void studentLogin();
 
 void welcome() {
 	// Print welcome message
 	cout << endl << "--------------- " << "Welcome to HRUC Work Experience Management System." << " ---------------" << endl;
 
-	cout << endl << "Please select one of the following options:\n\n 1) Student Login\n 2) Staff Login" << endl << endl << "Option: ";
+	cout << endl << "Please select one of the following options:\n\n 1) Student Login\n 2) Staff Login\n 3) Employer Menu" << endl << endl << "Option: ";
 	int option;
 	cin >> option;
 
@@ -23,11 +25,14 @@ void welcome() {
 		cout << endl << "--- Staff Login | HRUC WEX System ---" << endl;
 		staffLogin();
 		break;
+	case 3:
+		cout << endl << "--- Employer Menu | HRUC WEX System ---" << endl;
+		employerMenu();
+		break;
 	default:
 		cout << endl << "Invalid option! Try again.";
-		welcome();
 		break;
-	}
+	} 
 }
 
 int main() {
