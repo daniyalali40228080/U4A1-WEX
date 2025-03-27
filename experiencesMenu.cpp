@@ -11,10 +11,10 @@ struct Opportunity {
 	string location;
 	int hours;
 	int positionsAvailable;
+	bool applied = false;
 };
 
 vector<Opportunity> opportunitiesList;
-void experiencesMenu();
 void welcome();
 
 void addOpportunity() {
@@ -37,10 +37,10 @@ void addOpportunity() {
 	cout << "Enter the number of positions available: " << endl;
 	cin >> x.positionsAvailable;
 	opportunitiesList.push_back(x);
-	experiencesMenu();
+	welcome(); // Return to main menu
 }
-
 void displayOpportunities() {
+	char apply;
 	cout << endl << endl;
 	for (int i = 0; i < opportunitiesList.size(); i++) {
 		cout << "Name: " << opportunitiesList[i].name << endl;
@@ -51,17 +51,16 @@ void displayOpportunities() {
 		cout << "Location: " << opportunitiesList[i].location << endl;
 		cout << "Number of Hours: " << opportunitiesList[i].hours << endl;
 		cout << "Number of Positions Available: " << opportunitiesList[i].positionsAvailable << endl;
+		cout << "Applied: " << endl;
 	}
-	experiencesMenu();
+	welcome(); // Return to main menu
 }
-
 void searchOpportunity() {
-	string searchCriteria;
-	cout << "Enter the name of the opportunity you want to search for: " << endl << "Option: ";
-	cin >> searchCriteria;
+	cout << "Searching through all opportunities that you have applied to...";
 	cout << endl;
+	// Search through for all applied opportunities
 	for (int i = 0; i < opportunitiesList.size(); i++) {
-		if (searchCriteria == opportunitiesList[i].name) {
+		if (opportunitiesList[i].applied) {
 			cout << "Name: " << opportunitiesList[i].name << endl;
 			cout << "Company: " << opportunitiesList[i].company << endl;
 			cout << "Description: " << opportunitiesList[i].description << endl;
@@ -70,31 +69,31 @@ void searchOpportunity() {
 			cout << "Location: " << opportunitiesList[i].location << endl;
 			cout << "Number of Hours: " << opportunitiesList[i].hours << endl;
 			cout << "Number of Positions Available: " << opportunitiesList[i].positionsAvailable << endl;
+			cout << "Applied: " << opportunitiesList[i].applied << endl;
 		}
 	}
-	experiencesMenu();
+	welcome(); // Return to main menu
 }
 
-void experiencesMenu() {
-	cout << endl << "--------------- Experiences Menu | HRUC WEX System ---------------" << endl;
-	cout << endl << "Select one of the following options to be redirected to the correct page:\n\n 1) Add Opportunity\n 2) Display All Opportunities\n 3) Search for an Opportunity\n 4) Return to Main Menu" << endl << "Option: ";
-	int option;
-	cin >> option;
+void applyOpportunity() {
+	cout << endl << "Listing all opportunities you have not applied to..." << endl;
+	for (int i = 0; i < opportunitiesList.size(); i++) {
+		if (not opportunitiesList[i].applied) {
+			cout << "Name: " << opportunitiesList[i].name << endl;
+			cout << "Company: " << opportunitiesList[i].company << endl;
+			cout << "Description: " << opportunitiesList[i].description << endl;
 
-	switch (option) {
-	case 1:
-		addOpportunity();
-		break;
-	case 2:
-		displayOpportunities();
-		break;
-	case 3:
-		searchOpportunity();
-		break;
-	case 4:
-		welcome();
-		break;
-	default:
-		cout << "Invalid Option!";
+			if (not opportunitiesList[i].applied) {
+				char applyOption;
+				cout << endl << "Would you like to apply to this experience? (Y/N) Option: ";
+				cin >> applyOption;
+				if (applyOption == 'Y') {
+					opportunitiesList[i].applied = true;
+				}
+				else {
+					cout << "You have not applied to this experience." << endl;
+				}
+			}
+		}
 	}
 }
