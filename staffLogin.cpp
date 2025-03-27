@@ -8,7 +8,7 @@ void displayOpportunities();
 void searchOpportunity();
 void welcome();
 
-int loginAttempts = 3; // Adjusted to 3 for clarity
+int loginAttempts = 3; // Number of password attempts allowed
 
 void staffLogin() {
     string staffUsername, staffPassword; // Initialise Variables
@@ -48,13 +48,13 @@ void staffLogin() {
             return; // Exit after successful login and option handling
         } else {
             loginAttempts--;
-            if (loginAttempts > 0) {
+
                 cout << "Incorrect username or password! Try again.\n";
                 cout << "You have " << loginAttempts << " login attempts remaining.\n";
-            } else {
-                cout << "Too many failed attempts. Exiting program.\n";
-                return; // Exit after exceeding login attempts
-            }
+        }
+        if (loginAttempts =< 0) {
+            cout << endl << endl << "Exceeded maximum amount of login attempts, terminating program...";
+            exit(0);
         }
     }
 }
