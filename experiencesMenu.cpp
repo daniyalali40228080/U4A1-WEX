@@ -41,21 +41,21 @@ void addOpportunity() {
 	Opportunity x;
 
 	cout << "Enter the name of the opportunity: " << endl;
-	cin >> x.name;
+	getline(cin, x.name);
 	cout << "Enter the company hosting the opportunity: " << endl;
-	cin >> x.company;
+	getline(cin, x.company);
 	cout << "Enter the descripition of the opportunity: " << endl;
-	cin >> x.description;
+	getline(cin, x.description);
 	cout << "Enter the date of when the opportunity is taking place: " << endl;
-	cin >> x.date;
+	getline(cin, x.date);
 	cout << "Enter the qualifications required for the opportunity: " << endl;
-	cin >> x.qualifications;
+	getline(cin, x.qualifications);
 	cout << "Enter the location of the opportunity: " << endl;
-	cin >> x.location;
+	getline(cin, x.location);
 	cout << "Enter the number of hours to be worked during the opportunity: " << endl;
-	cin >> x.hours;
+	getline(cin, x.hours);
 	cout << "Enter the number of positions available: " << endl;
-	cin >> x.positionsAvailable;
+	getline(cin, x.positionsAvailable);
 	opportunitiesList.push_back(x);
 
 	saveVector();
