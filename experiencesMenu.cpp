@@ -75,7 +75,6 @@ void loadOpportunities() {
 
 void displayOpportunities() {
 	cout << endl << endl;
-	loadOpportunities();
 	for (int i = 0; i < opportunitiesList.size(); i++) {
 		cout << "Name: " << opportunitiesList[i].name << endl;
 		cout << "Company: " << opportunitiesList[i].company << endl;
