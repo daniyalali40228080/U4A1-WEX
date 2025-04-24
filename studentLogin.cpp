@@ -62,7 +62,7 @@ void studentLogin() {
 			studentLogin();
 		}
 	}
-	if (loginAttempts =< 0) {
+	if (loginAttempts <= 0) {
 		cout << endl << endl << "Exceeded maximum amount of login attempts, terminating program...";
 		exit(0);
 	}
