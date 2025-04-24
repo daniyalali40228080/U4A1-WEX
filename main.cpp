@@ -23,8 +23,9 @@ void welcome() {
 		cout << endl << "--- Staff Login | HRUC WEX System ---" << endl;
 		staffLogin();
 		break;
-    case 3:
-        cout << endl << endl << "--- Terminated Program ---";
+    	case 3:
+	        cout << endl << endl << "--- Terminated Program ---";
+		exit(0);
 	default:
 		cout << endl << "Invalid option! Try again.";
 		welcome();
