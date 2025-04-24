@@ -21,13 +21,13 @@ void staffLogin() {
         char key;
 		while ((key = _getch()) != '\r') {  // Enter key ('\r') to submit
 			if (key == '\b') {  // Handle backspace
-				if (!studentPassword.empty()) {
-					studentPassword.pop_back();
+				if (!staffPassword.empty()) {
+					staffPassword.pop_back();
 					cout << "\b \b";  // Remove '*' from screen
 				}
 			}
 			else {
-				studentPassword += key;
+				staffPassword += key;
 				cout << '*';  // Show '*' instead of actual character
 			}
 		}
