@@ -17,7 +17,6 @@ void staffLogin() {
         cout << endl << "Enter staff username: ";
         cin >> staffUsername;
         cout << "Enter staff password: ";
-        cin >> staffPassword;
 
         char key;
 		while ((key = _getch()) != '\r') {  // Enter key ('\r') to submit
