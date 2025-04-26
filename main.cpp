@@ -28,7 +28,6 @@ void welcome() {
 		exit(0);
 	default:
 		cout << endl << "Invalid option! Try again.";
-		welcome();
 		break;
 	}
 }
