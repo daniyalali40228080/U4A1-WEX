@@ -53,9 +53,9 @@ void addOpportunity() {
 	cout << "Enter the location of the opportunity: " << endl;
 	getline(cin, x.location);
 	cout << "Enter the number of hours to be worked during the opportunity: " << endl;
-	getline(cin, x.hours);
+	cin >> x.hours;
 	cout << "Enter the number of positions available: " << endl;
-	getline(cin, x.positionsAvailable);
+	cin >> x.positionsAvailable;
 	opportunitiesList.push_back(x);
 
 	saveVector();
