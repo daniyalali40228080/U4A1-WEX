@@ -5,8 +5,9 @@ using namespace std;
 void displayOpportunities();
 void searchOpportunity();
 
+int loginAttempts = 2;
+
 void studentLogin() {
-	int loginAttempts = 2;
 	string studentUsername, studentPassword; // Initalise Variables
 	cout << endl << "Enter student username: ";
 	cin >> studentUsername;
