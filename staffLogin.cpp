@@ -8,7 +8,7 @@ void displayOpportunities();
 void searchOpportunity();
 void welcome();
 
-int loginAttempts = 2; // Number of password attempts allowed
+int loginAttempts = 3; // Number of password attempts allowed
 
 void staffLogin() {
     string staffUsername, staffPassword; // Initialise Variables
